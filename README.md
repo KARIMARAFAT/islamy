@@ -1,4 +1,4 @@
-# islamt
+# islamy
 
 A new Flutter project.
 
