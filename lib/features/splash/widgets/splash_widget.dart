@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamt/core/app_consts.dart';
-import 'package:islamt/features/home/view/home_screen.dart';
+import 'package:islamt/features/home/view/main_layer.dart';
 
 class SplashWidget extends StatefulWidget {
   const SplashWidget({super.key});
