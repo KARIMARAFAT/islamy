@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:islamt/core/app_consts.dart';
 import 'package:islamt/core/common_decorations.dart';
+import 'package:islamt/features/home/tabs/quran_tab/quran_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> tabs = [
-    Container(color: Colors.amber),
+    QuranTab(),
     Container(color: Colors.pink),
     Container(color: Colors.brown),
     Container(color: Colors.orange),
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: tabs[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -31,102 +33,59 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         items: [
-          BottomNavigationBarItem(
-            icon: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-              // width: 50,
-              // height: 35,
-              decoration: currentIndex == 0
-                  ? CommonDecorations.selectedItemDecoration
-                  : null,
-
-              child: SvgPicture.asset(
-                AppConsts.quran,
-                width: currentIndex == 0 ? 25 : 20,
-                // ignore: deprecated_member_use
-                color: currentIndex == 0 ? Colors.white : null,
-              ),
-            ),
+          CustomBottomNavigationBarItem(
             label: 'Quran',
+            iconPath: AppConsts.quran,
+            isSelected: currentIndex == 0,
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.home),
-          //   label: AppConsts.hadeeth,
-          // ),
-          BottomNavigationBarItem(
-            icon: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-              // width: 50,
-              // height: 35,
-              decoration: currentIndex == 1
-                  ? CommonDecorations.selectedItemDecoration
-                  : null,
-
-              child: SvgPicture.asset(
-                AppConsts.hadeeth,
-                width: currentIndex == 1 ? 25 : 20,
-                // ignore: deprecated_member_use
-                color: currentIndex == 1 ? Colors.white : null,
-              ),
-            ),
+          CustomBottomNavigationBarItem(
             label: 'Hadeeth',
+            iconPath: AppConsts.hadeeth,
+            isSelected: currentIndex == 1,
           ),
-          BottomNavigationBarItem(
-            icon: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-              // width: 50,
-              // height: 35,
-              decoration: currentIndex == 2
-                  ? CommonDecorations.selectedItemDecoration
-                  : null,
-
-              child: SvgPicture.asset(
-                AppConsts.sebha,
-                width: currentIndex == 2 ? 25 : 20,
-                // ignore: deprecated_member_use
-                color: currentIndex == 2 ? Colors.white : null,
-              ),
-            ),
+          CustomBottomNavigationBarItem(
             label: 'Sebha',
+            iconPath: AppConsts.sebha,
+            isSelected: currentIndex == 2,
           ),
-          BottomNavigationBarItem(
-            icon: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-              // width: 50,
-              // height: 35,
-              decoration: currentIndex == 3
-                  ? CommonDecorations.selectedItemDecoration
-                  : null,
-
-              child: SvgPicture.asset(
-                AppConsts.radio,
-                width: currentIndex == 3 ? 25 : 20,
-                // ignore: deprecated_member_use
-                color: currentIndex == 3 ? Colors.white : null,
-              ),
-            ),
+          CustomBottomNavigationBarItem(
             label: 'Radio',
+            iconPath: AppConsts.radio,
+            isSelected: currentIndex == 3,
           ),
-          BottomNavigationBarItem(
-            icon: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-              // width: 50,
-              // height: 35,
-              decoration: currentIndex == 4
-                  ? CommonDecorations.selectedItemDecoration
-                  : null,
-
-              child: SvgPicture.asset(
-                AppConsts.time,
-                width: currentIndex == 4 ? 25 : 20,
-                // ignore: deprecated_member_use
-                color: currentIndex == 4 ? Colors.white : null,
-              ),
-            ),
+          CustomBottomNavigationBarItem(
             label: 'Time',
+            iconPath: AppConsts.time,
+            isSelected: currentIndex == 4,
           ),
         ],
       ),
+    );
+  }
+
+  // ignore: non_constant_identifier_names
+  BottomNavigationBarItem CustomBottomNavigationBarItem({
+    required String label,
+    required String iconPath,
+    required bool isSelected,
+  }) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+        // width: 50,
+        // height: 35,
+        decoration: isSelected
+            ? CommonDecorations.selectedItemDecoration
+            : null,
+
+        child: SvgPicture.asset(
+          iconPath,
+          width: isSelected ? 25 : 20,
+          // ignore: deprecated_member_use
+          color: isSelected ? Colors.white : null,
+        ),
+      ),
+      label: label,
     );
   }
 }
