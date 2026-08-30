@@ -3,6 +3,16 @@ import 'package:islamt/core/app_colors.dart';
 
 class AppTheme {
   static ThemeData apptheme = ThemeData(
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.blackColor,
+      titleTextStyle: TextStyle(
+        color: AppColors.goldColor,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      centerTitle: true,
+      iconTheme: IconThemeData(color: AppColors.goldColor),
+    ),
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.blackColor,
       primary: AppColors.blackColor,

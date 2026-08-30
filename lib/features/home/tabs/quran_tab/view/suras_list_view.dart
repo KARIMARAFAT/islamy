@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:islamt/core/app_colors.dart';
 import 'package:islamt/core/app_consts.dart';
+import 'package:islamt/features/home/tabs/quran_tab/sura_details_page.dart';
+import 'package:islamt/models/sura_model.dart';
 
 class SurasListView extends StatelessWidget {
   const SurasListView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,16 +29,22 @@ class SurasListView extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.zero,
           itemBuilder: (context, index) {
+            SuraModel currantSura = SuraModel.surasMapper[index];
             return ListTile(
+              onTap: () {
+                Navigator.of(
+                  context,
+                ).pushNamed(SuraDetailsPage.routeName, arguments: currantSura);
+              },
               leading: Stack(
                 alignment: Alignment.center,
                 children: [
-                  Icon(Icons.brightness_5, color: Colors.white, size: 50),
+                  Icon(Icons.brightness_5, color: Colors.white, size: 55),
                   Text(
-                    (index + 1).toString(),
+                    currantSura.index.toString(),
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 14,
                       fontFamily: AppConsts.family,
                       fontWeight: FontWeight.bold,
                     ),
@@ -45,7 +52,7 @@ class SurasListView extends StatelessWidget {
                 ],
               ),
               title: Text(
-                'Al-Fatiha',
+                currantSura.enName,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -54,7 +61,7 @@ class SurasListView extends StatelessWidget {
                 ),
               ),
               subtitle: Text(
-                '7 Verses',
+                '${currantSura.versesCount} Verses',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -63,7 +70,7 @@ class SurasListView extends StatelessWidget {
                 ),
               ),
               trailing: Text(
-                'الفاتحه',
+                currantSura.arName,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -80,7 +87,7 @@ class SurasListView extends StatelessWidget {
               color: AppColors.goldColor,
             );
           },
-          itemCount: 10,
+          itemCount: SuraModel.surasMapper.length,
         ),
       ],
     );

@@ -38,9 +38,7 @@ class CustomTextField extends StatelessWidget {
             minHeight: 20,
           ),
           border: _getBorder(),
-          enabledBorder: _getBorder().copyWith(
-            borderSide: BorderSide(color: Colors.green),
-          ),
+          enabledBorder: _getBorder(),
           focusedBorder: _getBorder().copyWith(
             borderSide: BorderSide(color: AppColors.goldColor),
           ),

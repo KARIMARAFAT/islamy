@@ -38,20 +38,15 @@ class _SplashWidgetState extends State<SplashWidget> {
     return Stack(
       children: [
         Center(
-          child: SvgPicture.asset(
-            'assets/images/ic_splash.svg',
-            width: 250,
-            height: 250,
-          ),
+          child: SvgPicture.asset(AppConsts.routeIcon, width: 250, height: 250),
         ),
-
         Positioned(
           bottom: 40,
           left: 0,
           right: 0,
           child: Center(
             child: Image.asset(
-              'assets/images/routegold.png',
+              AppConsts.footer,
               width: 150,
               height: 80,
               fit: BoxFit.contain,

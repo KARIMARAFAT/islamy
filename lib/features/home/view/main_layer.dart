@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:islamt/core/app_consts.dart';
 import 'package:islamt/core/common_decorations.dart';
+import 'package:islamt/features/home/tabs/hadeeth_tab/screens/hadeeth_tab.dart';
 import 'package:islamt/features/home/tabs/quran_tab/quran_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+  static const String routeName = '/HomeScreen';
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -13,12 +15,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> tabs = [
     QuranTab(),
-    Container(color: Colors.pink),
+    HadeethTab(),
     Container(color: Colors.brown),
     Container(color: Colors.orange),
     Container(color: Colors.red),
   ];
   int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
